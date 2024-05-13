@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="text-center">
+    <h2>Переводчик сделанный с помощью API Yandex Translate</h2>
+</div>
+<form method="POST" class="my-3">
+    <textarea class="form-control" name="text" id="text" placeholder="Введите текст для перевода">{{ request.form.text or '' }}</textarea>
+    <div class="mt-3">
+        <label for="language">Выбирите язык, на которых хотите перевести:</label>
+    <select class="form-control mt-2 w-25" name="language" id="language" placeholder="language">
+        <option value="en" {% if request.form.language == "en"  %} selected {% endif %}>Английский</option>
+        <option value="ru" {% if request.form.language == "ru"  %} selected {% endif %}>Русский</option>
+    </select>
+    </div>
+    <button class="btn btn-success mt-3">Перевести</button>
+</form>
+{% if text %}
+Переведенный текст:
+<textarea class="form-control" name="text" id="text">{{ text }}</textarea>
+{% endif %}
+{% endblock %}
